@@ -13,8 +13,8 @@
     --c-white: #FFFFFF;
     
     /* Typography */
-    --f-primary: 'Jost', sans-serif;
-    --f-secondary: 'Inter', sans-serif;
+    --f-primary: 'Sweet Sans Pro', sans-serif;
+    --f-secondary: 'Proxima Nova', sans-serif;
     --f-arabic: 'Noto Kufi Arabic', sans-serif;
     
     /* Spacing */
@@ -796,6 +796,40 @@ textarea.form-input {
 /* ==========================================================================
    Project Cards (Homepage Grid)
    ========================================================================== */
+/* ==========================================================================
+   Quranic Verse Section
+   ========================================================================== */
+.quran-verse-section {
+    padding: var(--s-xxl) 0;
+    background-color: var(--c-neutral-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.quran-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quran-text {
+    font-family: var(--f-arabic);
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    color: var(--c-olive-dark);
+    line-height: 2;
+    font-weight: 300;
+    margin-bottom: var(--s-md);
+    letter-spacing: 0;
+}
+
+.quran-reference {
+    font-family: var(--f-arabic);
+    font-size: 1rem;
+    color: var(--c-text-muted);
+    font-weight: 300;
+}
+
 .project-grid-main {
     display: grid;
     grid-template-columns: 1fr 1fr;
