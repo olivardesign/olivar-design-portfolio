@@ -1383,7 +1383,7 @@ html[lang="ar"] .process-step:hover .step-title { transform: translateX(-10px); 
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     min-height: 85vh;
-    cursor: pointer;
+    cursor: default;
     overflow: hidden;
     border-top: 1px solid rgba(212,201,180,0.25);
     transition: background 0.4s ease;
@@ -1417,6 +1417,39 @@ html[lang="ar"] .process-step:hover .step-title { transform: translateX(-10px); 
     transition: opacity 0.3s, gap 0.3s;
 }
 .project-editorial:hover .proj-cta { gap: 14px; opacity: 0.7; }
+
+.selected-works-footer {
+    border-top: 1px solid rgba(212,201,180,0.25);
+    padding: var(--s-xl) var(--s-md) var(--s-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-full-portfolio-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--f-primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--c-olive-dark);
+    padding: 0.95rem 2.2rem;
+    border: 1px solid rgba(44, 53, 41, 0.35);
+    border-radius: 40px;
+    transition: var(--t-smooth);
+}
+
+html[lang="ar"] .view-full-portfolio-cta {
+    letter-spacing: 0;
+}
+
+.view-full-portfolio-cta:hover {
+    background-color: var(--c-olive-dark);
+    color: var(--c-sand);
+    border-color: var(--c-olive-dark);
+}
 @media (max-width: 900px) {
     .project-editorial, .project-editorial--reverse { grid-template-columns: 1fr; min-height: auto; }
     .project-editorial--reverse .project-editorial-img { order: 1; }

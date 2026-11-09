@@ -1,4 +1,7 @@
 node_modules
 .DS_Store
-
 .vercel
+/Portfolio-assets/
+/portfolio-preview/
+/public/portfolio-preview-assets/
+/dist/portfolio-assets/

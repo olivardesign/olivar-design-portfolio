@@ -1,0 +1,917 @@
+/* ==========================================================================
+   Olivar Design — Native Portfolio Book Production Styles
+   Approved Architecture & Interior Design Portfolio System + /portfolio Selector
+   ========================================================================== */
+
+:root {
+    --c-olive: #3B4A3F;
+    --c-olive-dark: #2C3529;
+    --c-sand: #EAE0D5;
+    --c-stone: #D4C9B4;
+    --c-neutral-light: #F9F8F5;
+    --c-text-main: #2A2D2B;
+    --c-text-muted: #6B726C;
+    --c-white: #FFFFFF;
+    --c-border-subtle: rgba(42, 45, 43, 0.12);
+
+    --f-primary: 'Sweet Sans Pro', 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+    --f-secondary: 'Proxima Nova', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --f-arabic: 'Noto Kufi Arabic', sans-serif;
+
+    --t-smooth: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--c-neutral-light);
+}
+
+body {
+    background-color: var(--c-neutral-light);
+    color: var(--c-text-main);
+    font-family: var(--f-secondary);
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+}
+
+/* ==========================================================================
+   Minimal Floating Header
+   ========================================================================== */
+.portfolio-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(249, 248, 245, 0.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(42, 45, 43, 0.06);
+    transition: var(--t-smooth);
+}
+
+.topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--c-olive-dark);
+}
+
+.topbar-logo-svg {
+    height: 26px;
+    width: auto;
+    fill: var(--c-olive-dark);
+}
+
+.topbar-brand-text {
+    font-family: var(--f-primary);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c-olive-dark);
+    font-weight: 500;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.topbar-sep {
+    font-family: var(--f-primary);
+    font-size: 0.7rem;
+    color: var(--c-stone);
+    user-select: none;
+}
+
+.topbar-switch {
+    font-family: var(--f-primary);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: var(--t-smooth);
+}
+
+.topbar-switch:hover,
+.topbar-switch.active {
+    color: var(--c-olive-dark);
+    border-bottom-color: var(--c-olive-dark);
+}
+
+/* ==========================================================================
+   UNIFIED OLIVAR PORTFOLIO BOOK COVER SYSTEM
+   Book 01: Architecture (Source 1.png) & Book 02: Interiors (Source 1.png + 13.png)
+   ========================================================================== */
+.olivar-book-cover {
+    min-height: 92vh;
+    min-height: 92svh;
+    background-color: #FFFFFF;
+    color: var(--c-text-main);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5.5rem 1.5rem 2.25rem;
+    border-bottom: 1px solid var(--c-border-subtle);
+}
+
+.book-cover-grid {
+    position: relative;
+    z-index: 2;
+    margin: auto 0;
+    width: 100%;
+    max-width: 1380px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.book-cover-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+}
+
+/* Primary Hierarchy: OLIVAR DESIGN Emblem + Wordmark */
+.book-cover-logo {
+    width: clamp(190px, 46vw, 285px);
+    height: auto;
+    fill: #54534A;
+    margin-bottom: 1.25rem;
+}
+
+/* Original Creative Tagline from 1.png: "Start Creating / NEVER STOP DREAMING" */
+.book-cover-tagline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    margin-bottom: 2.75rem;
+}
+
+.tagline-light {
+    font-family: var(--f-secondary);
+    font-size: clamp(0.82rem, 2vw, 0.96rem);
+    font-weight: 300;
+    color: #9A988E;
+    letter-spacing: 0.04em;
+}
+
+.tagline-bold {
+    font-family: var(--f-primary);
+    font-size: clamp(0.76rem, 1.8vw, 0.88rem);
+    font-weight: 500;
+    color: #2A2D2B;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+/* Secondary Title (Lower in composition, Single Line, Smaller than OLIVAR DESIGN) */
+.book-cover-subtitle {
+    font-family: var(--f-primary);
+    font-size: clamp(0.82rem, 2.3vw, 1.12rem);
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--c-olive-dark);
+    white-space: nowrap;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(42, 45, 43, 0.14);
+}
+
+.book-cover-visual {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.book-cover-sketch-img {
+    width: 90%;
+    max-width: 460px;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.book-cover-bottom {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1380px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 1rem;
+    font-family: var(--f-primary);
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+}
+
+/* ==========================================================================
+   RESTORED ROUND 1 PROJECT INFORMATION TEMPLATE (EXACT LAYOUT & HIERARCHY)
+   ========================================================================== */
+.portfolio-book {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.project-chapter {
+    padding-top: 4.5rem;
+    padding-bottom: 3.5rem;
+}
+
+.project-header {
+    padding: 0 1.5rem;
+    margin-bottom: 2.25rem;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.project-num {
+    display: block;
+    font-family: var(--f-primary);
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+    color: var(--c-olive);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+}
+
+.project-name {
+    font-family: var(--f-primary);
+    font-size: clamp(1.55rem, 5vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-text-main);
+    line-height: 1.18;
+    margin-bottom: 0.35rem;
+}
+
+.project-working-code {
+    display: inline-block;
+    font-family: var(--f-primary);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    margin-bottom: 0.65rem;
+}
+
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1.15rem;
+    font-family: var(--f-secondary);
+    font-size: 0.85rem;
+    color: var(--c-text-muted);
+    letter-spacing: 0.03em;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--c-border-subtle);
+}
+
+.project-meta span {
+    display: inline-flex;
+    align-items: center;
+}
+
+.project-meta span:not(:last-child)::after {
+    content: "·";
+    margin-left: 1.15rem;
+    color: var(--c-stone);
+}
+
+/* ==========================================================================
+   ARCHITECTURE 16:9 SPREAD SYSTEM — CLEAN NEGATIVE SPACE + CENTERED LOGO
+   Zero random lines, zero cropped logo fragments, intentional logo scale
+   ========================================================================== */
+.arch-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    width: 100%;
+}
+
+.arch-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: #EFECE6;
+}
+
+.arch-frame--full > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.arch-frame--spread-75 {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.arch-frame--spread-75.panel-right {
+    grid-template-columns: 75% 25%;
+}
+
+.arch-frame--spread-66 {
+    display: grid;
+    grid-template-columns: 34% 66%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.arch-frame--spread-66.panel-right {
+    grid-template-columns: 66% 34%;
+}
+
+.arch-frame--duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: var(--c-neutral-light);
+}
+
+.arch-frame--duo > .duo-cell {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.arch-frame--duo > .duo-cell > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spread-media {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.spread-media > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Clean Negative Space Brand Panel beside Architectural Render */
+.spread-panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(0.75rem, 2.5vw, 2.5rem);
+}
+
+.spread-panel--olive {
+    background-color: #21281F;
+    color: var(--c-sand);
+}
+
+.spread-panel--sand {
+    background-color: #E8E1D5;
+    color: #21281F;
+}
+
+.spread-panel--paper {
+    background-color: #FFFFFF;
+    color: #21281F;
+}
+
+/* Large, Subtle Olivar Icon-Only Graphic Element inside Leftover Panel */
+.panel-centered-logo {
+    width: 64%;
+    max-width: 220px;
+    min-width: 52px;
+    height: auto;
+    fill: currentColor;
+    opacity: 0.16;
+    position: relative;
+    z-index: 2;
+    display: block;
+}
+
+/* Sketch + Logo Non-Overlapping Vertical Stack inside Leftover Panel:
+   [ architectural sketch ] -> [ clean breathing space ] -> [ Olivar icon ] */
+.spread-panel--sketch {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(0.75rem, 2.2vw, 2.25rem) clamp(0.6rem, 2vw, 2rem);
+    gap: clamp(0.75rem, 2.5vw, 2rem);
+}
+
+.spread-panel--sketch .panel-sketch-zone {
+    width: 100%;
+    height: 62%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.spread-panel--sketch .panel-sketch-bg {
+    position: static;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.78;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    padding: 0;
+}
+
+.spread-panel--sketch .panel-logo-zone {
+    width: 100%;
+    height: 22%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.spread-panel--sketch .panel-centered-logo {
+    width: 42%;
+    max-width: 96px;
+    min-width: 36px;
+    max-height: 100%;
+    opacity: 0.18;
+}
+
+/* ==========================================================================
+   INTERIORS UNIFIED IMAGE SYSTEM — ONE IMAGE PER ROW
+   1. Primary Format: SQUARE (1:1) — Used as the default across the portfolio
+   2. Controlled Exception: LANDSCAPE — Used systematically only for
+      wide compositions when square would harm the render
+   3. Floor Plan Container (.plan-item) — Preserves full drawing readability
+   ========================================================================== */
+.project-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.stream-item {
+    width: 100%;
+    overflow: hidden;
+    background-color: #EFECE6;
+}
+
+/* Primary Default Format: 1:1 Square */
+.stream-item.int-frame-square,
+.stream-item.int-frame-primary {
+    aspect-ratio: 1 / 1;
+}
+
+.stream-item.int-frame-square > img,
+.stream-item.int-frame-primary > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Controlled Systematic Exception: Wide / Landscape Opener / Closer (Zero edge cropping so labels like MAJLES stay 100% visible) */
+.stream-item.int-frame-landscape,
+.stream-item.int-frame-wide {
+    height: auto;
+}
+
+.stream-item.int-frame-landscape > img,
+.stream-item.int-frame-wide > img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Legacy fallback if any item still has int-frame-portrait */
+.stream-item.int-frame-portrait {
+    aspect-ratio: 1 / 1;
+}
+
+.stream-item.int-frame-portrait > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Clean Floor Plan Frame with Native Olivar Level Header */
+.stream-item.plan-item {
+    background-color: var(--c-white);
+    padding: 1.5rem 1rem 1.25rem;
+    border-top: 1px solid rgba(42, 45, 43, 0.05);
+    border-bottom: 1px solid rgba(42, 45, 43, 0.05);
+}
+
+.plan-native-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(42, 45, 43, 0.08);
+    font-family: var(--f-primary);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+}
+
+/* One Image At A Time — Never side-by-side on mobile OR desktop */
+.stream-pair,
+.stream-triplet {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+/* ==========================================================================
+   Subtle Project Divider & Closing Footer
+   ========================================================================== */
+.project-divider {
+    max-width: 1440px;
+    margin: 4rem auto 0;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.project-divider-line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--c-border-subtle);
+}
+
+.project-divider-leaf {
+    width: 18px;
+    height: 18px;
+    fill: var(--c-stone);
+    opacity: 0.85;
+}
+
+.portfolio-closing {
+    margin-top: 4rem;
+    padding: 5rem 1.5rem 4rem;
+    background-color: var(--c-olive-dark);
+    color: var(--c-sand);
+    text-align: center;
+}
+
+.closing-logo {
+    width: 54px;
+    height: auto;
+    fill: var(--c-sand);
+    margin: 0 auto 1.5rem;
+}
+
+.closing-title {
+    font-family: var(--f-primary);
+    font-size: clamp(1.35rem, 4vw, 2rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+.closing-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.closing-btn {
+    font-family: var(--f-primary);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.75rem;
+    border: 1px solid rgba(234, 224, 213, 0.35);
+    color: var(--c-sand);
+    text-decoration: none;
+    transition: var(--t-smooth);
+}
+
+.closing-btn:hover {
+    background-color: var(--c-sand);
+    color: var(--c-olive-dark);
+}
+
+.closing-copy {
+    font-size: 0.75rem;
+    color: var(--c-stone);
+    opacity: 0.65;
+    letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   PORTFOLIO SELECTION LANDING PAGE (/portfolio)
+   Minimalist luxury selection between Architecture & Interior Design
+   ========================================================================== */
+.portfolio-selector-page {
+    min-height: 100vh;
+    min-height: 100svh;
+    background-color: var(--c-neutral-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5.75rem 1.5rem 2.5rem;
+}
+
+.selector-inner {
+    width: 100%;
+    max-width: 1320px;
+    margin: auto;
+    padding: 1rem 0 2rem;
+}
+
+.selector-header {
+    text-align: center;
+    margin-bottom: clamp(2.25rem, 5vw, 3.75rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selector-logo {
+    width: clamp(150px, 34vw, 215px);
+    height: auto;
+    fill: #54534A;
+    margin-bottom: 1.15rem;
+}
+
+.selector-subtitle {
+    font-family: var(--f-primary);
+    font-size: clamp(0.75rem, 1.8vw, 0.92rem);
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--c-olive-dark);
+    padding-top: 0.95rem;
+    border-top: 1px solid rgba(42, 45, 43, 0.14);
+}
+
+.selector-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    width: 100%;
+}
+
+.selector-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--c-text-main);
+    background-color: var(--c-white);
+    border: 1px solid rgba(42, 45, 43, 0.08);
+    transition: var(--t-smooth);
+}
+
+.selector-card-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: #EFECE6;
+}
+
+.selector-card-media > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.selector-card:hover .selector-card-media > img {
+    transform: scale(1.035);
+}
+
+.selector-card-body {
+    padding: 1.5rem 1.75rem 1.65rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    border-top: 1px solid rgba(42, 45, 43, 0.06);
+}
+
+.selector-card-title {
+    font-family: var(--f-primary);
+    font-size: clamp(1.15rem, 2.6vw, 1.55rem);
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--c-olive-dark);
+}
+
+.selector-card-cta {
+    font-family: var(--f-primary);
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    white-space: nowrap;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(42, 45, 43, 0.25);
+    transition: var(--t-smooth);
+}
+
+.selector-card:hover .selector-card-cta {
+    color: var(--c-olive-dark);
+    border-bottom-color: var(--c-olive-dark);
+}
+
+.selector-footer {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(42, 45, 43, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--f-primary);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+}
+
+/* ==========================================================================
+   Desktop Recomposition (min-width: 900px)
+   ========================================================================== */
+@media (min-width: 900px) {
+    .portfolio-topbar {
+        padding: 1.25rem 3.5rem;
+    }
+
+    .olivar-book-cover {
+        padding: 7rem 4.5rem 3rem;
+        min-height: 94vh;
+    }
+
+    .book-cover-grid {
+        grid-template-columns: 5fr 7fr;
+        gap: 2.5rem;
+    }
+
+    .book-cover-sketch-img {
+        width: 100%;
+        max-width: 680px;
+        max-height: 78vh;
+    }
+
+    .project-chapter {
+        padding-top: 7rem;
+        padding-bottom: 5rem;
+    }
+
+    /* Exact Round 1 Desktop Project Header Grid */
+    .project-header {
+        padding: 0 4.5rem;
+        margin-bottom: 3.5rem;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 2rem;
+        border-bottom: 1px solid var(--c-border-subtle);
+        padding-bottom: 1.75rem;
+    }
+
+    .project-meta {
+        border-top: none;
+        padding-top: 0;
+        font-size: 0.92rem;
+    }
+
+    .arch-stream {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 4.5rem;
+        gap: 2.5rem;
+    }
+
+    .project-stream {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 4.5rem;
+        gap: 2.75rem;
+    }
+
+    /* Single centered square image per row on desktop with intentional whitespace */
+    .stream-item.int-frame-square,
+    .stream-item.int-frame-primary,
+    .stream-item.int-frame-portrait {
+        max-width: 840px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Controlled Landscape Exception (Hero Opener / Closer) centered on desktop */
+    .stream-item.int-frame-landscape,
+    .stream-item.int-frame-wide {
+        max-width: 1020px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Clean architectural whitespace for plans on desktop */
+    .stream-item.plan-item {
+        max-width: 920px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2.5rem 3.5rem 3rem;
+        background-color: var(--c-white);
+        box-shadow: 0 2px 24px rgba(0, 0, 0, 0.02);
+    }
+
+    /* Keep ONE IMAGE PER ROW on desktop as well — no side-by-side pairings */
+    .stream-pair,
+    .stream-triplet {
+        flex-direction: column;
+        gap: 2.75rem;
+        align-items: center;
+    }
+
+    .stream-pair > .stream-item,
+    .stream-triplet > .stream-item {
+        width: 100%;
+    }
+
+    .project-divider {
+        padding: 0 4.5rem;
+        margin-top: 6rem;
+    }
+
+    .portfolio-selector-page {
+        padding: 6.75rem 3.5rem 2.5rem;
+    }
+
+    .selector-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.75rem;
+    }
+
+    .selector-card-body {
+        padding: 1.85rem 2.25rem 2rem;
+    }
+}

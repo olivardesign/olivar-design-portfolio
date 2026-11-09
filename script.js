@@ -112,20 +112,18 @@ function init() {
         });
     }
 
-    // Project cards (editorial layout)
-    document.querySelectorAll('.project-editorial').forEach(card => {
-        card.addEventListener('click', () => openModal(card.dataset.projectId));
-    });
-
     // Modal close
     const modal = document.getElementById('project-modal');
-    document.getElementById('close-modal').addEventListener('click', () => {
-        modal.classList.remove('active');
-        document.body.classList.remove('modal-open');
-    });
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) { modal.classList.remove('active'); document.body.classList.remove('modal-open'); }
-    });
+    const closeBtn = document.getElementById('close-modal');
+    if (modal && closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) { modal.classList.remove('active'); document.body.classList.remove('modal-open'); }
+        });
+    }
 
     function openModal(id) {
         const data = projectsData[id];
