@@ -954,7 +954,7 @@ body.intro-scroll-lock {
 }
 
 /* Prevent any 1-frame flash before inline JS computes FLIP coordinates */
-body.portfolio-intro-page:not(.intro-ready):not(.intro-complete) .selector-logo {
+body.portfolio-intro-page:not(.intro-ready):not(.intro-play):not(.intro-complete) .selector-logo {
     opacity: 0;
 }
 
@@ -971,31 +971,34 @@ body.portfolio-intro-page:not(.intro-ready):not(.intro-complete) .selector-logo 
     will-change: opacity, backdrop-filter;
 }
 
-/* Initial Pre-Animation State */
-body.intro-ready .selector-logo {
-    opacity: 1;
+/* Initial Pre-Animation State (Painted by browser BEFORE .intro-play is added) */
+body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-logo {
     transform: translate3d(var(--intro-tx, 0px), var(--intro-ty, 0px), 0) scale(var(--intro-scale, 1));
 }
 
-body.intro-ready .selector-logo .leaf-1 {
+body.intro-ready:not(.intro-play) .selector-logo {
+    opacity: 1;
+}
+
+body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-logo .leaf-1 {
     transform-origin: 290px 326px;
     opacity: 0.14;
     transform: translate3d(0, -135px, 0) scale(1.32);
 }
 
-body.intro-ready .selector-logo .leaf-2 {
+body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-logo .leaf-2 {
     transform-origin: 289px 307px;
     opacity: 0.14;
     transform: translate3d(-115px, 95px, 0) scale(1.32);
 }
 
-body.intro-ready .selector-logo .leaf-3 {
+body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-logo .leaf-3 {
     transform-origin: 306px 315px;
     opacity: 0.14;
     transform: translate3d(115px, 95px, 0) scale(1.32);
 }
 
-body.intro-ready .selector-logo .wordmark {
+body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-logo .wordmark {
     transform-origin: 297px 555px;
     opacity: 0.14;
     transform: translate3d(0, 26px, 0) scale(0.95);
@@ -1004,10 +1007,10 @@ body.intro-ready .selector-logo .wordmark {
 /* Underlying Portfolio content — heavily blurred & non-readable until logo lands
    All elements share the exact same pre-reveal opacity (0.20) and blur (18px)
    so they reveal simultaneously as a single unified composition */
-body.portfolio-intro-page:not(.intro-complete) .selector-subtitle,
-body.portfolio-intro-page:not(.intro-complete) .selector-card,
-body.portfolio-intro-page:not(.intro-complete) .portfolio-topbar,
-body.portfolio-intro-page:not(.intro-complete) .selector-footer {
+body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-subtitle,
+body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-card,
+body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .portfolio-topbar,
+body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-footer {
     opacity: 0.20;
     filter: blur(18px);
     -webkit-filter: blur(18px);
@@ -1015,13 +1018,15 @@ body.portfolio-intro-page:not(.intro-complete) .selector-footer {
     will-change: opacity, filter;
 }
 
-/* Play State (body.intro-play) */
+/* Play State (body.intro-play) — Triggered only AFTER initial state has been painted */
 body.intro-play .selector-logo {
+    opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
     transition: transform 0.76s cubic-bezier(0.25, 1, 0.5, 1) 0.72s;
 }
 
 body.intro-play .selector-logo .leaf-1 {
+    transform-origin: 290px 326px;
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
     transition:
@@ -1030,6 +1035,7 @@ body.intro-play .selector-logo .leaf-1 {
 }
 
 body.intro-play .selector-logo .leaf-2 {
+    transform-origin: 289px 307px;
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
     transition:
@@ -1038,6 +1044,7 @@ body.intro-play .selector-logo .leaf-2 {
 }
 
 body.intro-play .selector-logo .leaf-3 {
+    transform-origin: 306px 315px;
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
     transition:
@@ -1046,6 +1053,7 @@ body.intro-play .selector-logo .leaf-3 {
 }
 
 body.intro-play .selector-logo .wordmark {
+    transform-origin: 297px 555px;
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
     transition:

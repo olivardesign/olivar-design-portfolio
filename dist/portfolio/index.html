@@ -10,7 +10,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="/portfolio-assets/arch/13.jpg" imagesrcset="/portfolio-assets/arch/13-sm.jpg 960w, /portfolio-assets/arch/13.jpg 1800w" imagesizes="(max-width: 900px) 100vw, 46vw">
     <link rel="preload" as="image" href="/portfolio-assets/int/17_1.jpg" imagesrcset="/portfolio-assets/int/17_1-sm.jpg 800w, /portfolio-assets/int/17_1.jpg 1440w" imagesizes="(max-width: 900px) 100vw, 46vw">
-  <link rel="stylesheet" crossorigin href="/assets/portfolio-BqaFWky7.css">
+    <!-- Inline Critical Intro Styles: Guarantees zero flash & immediate layout/initial state on first cold load -->
+    <style>
+        html.intro-scroll-lock,
+        body.intro-scroll-lock {
+            overflow: hidden !important;
+            height: 100% !important;
+            touch-action: none !important;
+            overscroll-behavior: none !important;
+        }
+        body.portfolio-intro-page {
+            background-color: #F9F8F5;
+            margin: 0;
+        }
+        .intro-frost-veil {
+            position: fixed;
+            inset: 0;
+            z-index: 150;
+            pointer-events: none;
+            background: rgba(249, 248, 245, 0.82);
+            backdrop-filter: blur(30px) saturate(0.92);
+            -webkit-backdrop-filter: blur(30px) saturate(0.92);
+            opacity: 1;
+        }
+        body.portfolio-intro-page:not(.intro-ready):not(.intro-play):not(.intro-complete) .selector-logo {
+            opacity: 0;
+        }
+        body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-subtitle,
+        body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-card,
+        body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .portfolio-topbar,
+        body.portfolio-intro-page:not(.intro-play):not(.intro-complete) .selector-footer {
+            opacity: 0.20;
+            filter: blur(18px);
+            -webkit-filter: blur(18px);
+        }
+    </style>
+  <link rel="stylesheet" crossorigin href="/assets/portfolio-Bt7xahuL.css">
 </head>
 <body class="portfolio-intro-page intro-scroll-lock">
 
@@ -108,6 +143,13 @@
 
             let unlockTimer = null;
 
+            function isStylesheetAndLayoutReady() {
+                const computed = window.getComputedStyle(logo);
+                const rect = logo.getBoundingClientRect();
+                // When portfolio.css is loaded and applied, .selector-logo has z-index: 300 and a valid layout box (150px - 215px)
+                return computed.zIndex === '300' && rect.width > 50 && rect.width < 320;
+            }
+
             function computeAndRunIntro() {
                 if (unlockTimer) {
                     clearTimeout(unlockTimer);
@@ -147,24 +189,67 @@
                 // 3. Apply initial inverted state synchronously
                 body.classList.add('intro-ready');
 
-                // Force style calculation before starting transition
-                void logo.offsetWidth;
+                // Force style & layout calculation on the logo and its child paths
+                void logo.getBoundingClientRect();
 
-                // 4. Trigger logo assembly -> travel -> post-landing blur dissolution
+                // 4. Double requestAnimationFrame:
+                //    Frame 1 guarantees the browser paints the initial separated/14%-opacity state.
+                //    Frame 2 triggers .intro-play so CSS transitions run reliably on every cold load.
                 requestAnimationFrame(function () {
-                    body.classList.add('intro-play');
+                    requestAnimationFrame(function () {
+                        body.classList.add('intro-play');
+                    });
                 });
 
-                // 5. Unlock scrolling & mark complete once the blur veil finishes clearing (1.96s)
+                // 5. Unlock scrolling & mark complete once the blur veil finishes clearing (1.98s)
                 unlockTimer = setTimeout(function () {
                     html.classList.remove('intro-scroll-lock');
                     body.classList.remove('intro-scroll-lock');
                     body.classList.add('intro-complete');
-                }, 1960);
+                }, 1980);
             }
 
-            // Run immediately on initial load / refresh
-            computeAndRunIntro();
+            function initIntroWhenReady() {
+                if (isStylesheetAndLayoutReady()) {
+                    computeAndRunIntro();
+                    return;
+                }
+
+                // If external CSS is still downloading on a cold cache / throttled network,
+                // wait for the stylesheet or window load so FLIP coordinates are measured accurately
+                let started = false;
+                function tryStart() {
+                    if (started) return;
+                    if (isStylesheetAndLayoutReady()) {
+                        started = true;
+                        computeAndRunIntro();
+                    }
+                }
+
+                const pollId = setInterval(function () {
+                    if (isStylesheetAndLayoutReady()) {
+                        clearInterval(pollId);
+                        tryStart();
+                    }
+                }, 16);
+
+                window.addEventListener('load', function () {
+                    clearInterval(pollId);
+                    if (!started) {
+                        started = true;
+                        computeAndRunIntro();
+                    }
+                }, { once: true });
+            }
+
+            initIntroWhenReady();
+
+            // Also handle BFCache restoration (e.g. back/forward navigation) cleanly
+            window.addEventListener('pageshow', function (event) {
+                if (event.persisted) {
+                    computeAndRunIntro();
+                }
+            });
         })();
     </script>
 </body>
