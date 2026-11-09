@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="intro-scroll-lock">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="/portfolio-assets/arch/13.jpg" imagesrcset="/portfolio-assets/arch/13-sm.jpg 960w, /portfolio-assets/arch/13.jpg 1800w" imagesizes="(max-width: 900px) 100vw, 46vw">
     <link rel="preload" as="image" href="/portfolio-assets/int/17_1.jpg" imagesrcset="/portfolio-assets/int/17_1-sm.jpg 800w, /portfolio-assets/int/17_1.jpg 1440w" imagesizes="(max-width: 900px) 100vw, 46vw">
-  <link rel="stylesheet" crossorigin href="/assets/portfolio-BuYUPnC_.css">
+  <link rel="stylesheet" crossorigin href="/assets/portfolio-C-1eSycP.css">
 </head>
-<body>
+<body class="portfolio-intro-page intro-scroll-lock">
+
+    <!-- Frosted Architectural Glass Veil (Sits ABOVE page content, BELOW sharp animated logo) -->
+    <div id="intro-frost-veil" class="intro-frost-veil" aria-hidden="true"></div>
 
     <!-- Minimal Floating Topbar -->
     <header class="portfolio-topbar">
@@ -30,11 +33,11 @@
     <main class="portfolio-selector-page">
         <div class="selector-inner">
             <header class="selector-header">
-                <svg class="selector-logo" viewBox="0 170 595.28 485" xmlns="http://www.w3.org/2000/svg" aria-label="Olivar Design">
-                    <path d="M290.69,326l-28.93,28.93c10.8.02,21.27.35,32.78,3.27-28.48,11.16-87.74,37.15-87.74,37.15l8.12,11.07c6.08-.93,89.32-43.82,155.81.66,0,0,22.34-27.88,22.68-28.86-15.94-8.4-69.26-35.71-102.72-52.21"/>
-                    <path d="M289.79,307.32l-10.58-39.52c-5.41,9.35-10.94,18.24-19.22,26.76,4.58-30.24,11.7-94.56,11.7-94.56l-13.65,1.5c-2.23,5.73-6.71,99.26-78.47,134.6,0,0,12.97,33.29,13.65,34.08,15.25-9.61,65.56-42.12,96.58-62.85"/>
-                    <path d="M306.42,315.89l39.52,10.59c-5.38-9.36-10.33-18.59-13.56-30.02,23.9,19.09,76.04,57.41,76.04,57.41l5.53-12.57c-3.85-4.8-82.6-55.44-77.33-135.26,0,0-35.31-5.41-36.34-5.22.7,18.01,3.7,77.84,6.15,115.06"/>
-                    <g>
+                <svg id="portfolio-intro-logo" class="selector-logo" viewBox="0 170 595.28 485" xmlns="http://www.w3.org/2000/svg" aria-label="Olivar Design">
+                    <path class="leaf-1" d="M290.69,326l-28.93,28.93c10.8.02,21.27.35,32.78,3.27-28.48,11.16-87.74,37.15-87.74,37.15l8.12,11.07c6.08-.93,89.32-43.82,155.81.66,0,0,22.34-27.88,22.68-28.86-15.94-8.4-69.26-35.71-102.72-52.21"/>
+                    <path class="leaf-2" d="M289.79,307.32l-10.58-39.52c-5.41,9.35-10.94,18.24-19.22,26.76,4.58-30.24,11.7-94.56,11.7-94.56l-13.65,1.5c-2.23,5.73-6.71,99.26-78.47,134.6,0,0,12.97,33.29,13.65,34.08,15.25-9.61,65.56-42.12,96.58-62.85"/>
+                    <path class="leaf-3" d="M306.42,315.89l39.52,10.59c-5.38-9.36-10.33-18.59-13.56-30.02,23.9,19.09,76.04,57.41,76.04,57.41l5.53-12.57c-3.85-4.8-82.6-55.44-77.33-135.26,0,0-35.31-5.41-36.34-5.22.7,18.01,3.7,77.84,6.15,115.06"/>
+                    <g class="wordmark">
                         <path d="M129.41,542.85c-12.38,31.7-50.78,42.3-81.27,29.67-21.13-8.75-33.33-29.08-32.6-51.71.71-21.91,13.42-40.32,33.91-48.22,29.77-11.48,67.12-1.73,79.5,29.02,5.24,13.01,5.66,27.94.46,41.24M77.71,570c16.21-1.23,29.12-11.56,34.5-26.4,10.02-27.67-.93-62.68-30.31-67.41-9.07-1.46-18.21-.72-26.3,3.39-22.17,11.27-27.26,40.81-19.46,63.33,6.12,17.66,22.43,28.55,41.57,27.1"/>
                         <path d="M559.97,573.17l-12.46-24.24c-3.41-6.64-9.2-16.78-14.88-16.86l-18.61-.25.08,41.17-16.38.05-.02-100.1,40.99.25c7.26.04,13.9,2.26,20.14,5.59,9.43,6.39,13.9,17.54,11.81,28.75-2,10.7-10.21,19.23-21.49,22.31,6.88,4.67,10.85,9.83,14.38,16.35l14.46,26.72-18.03.27ZM550.23,517.01c4.57-7.38,5.46-15.85,2.65-23.72-2.52-6.62-8.3-11.8-15.8-11.88l-23.03-.24.02,42.64,19.85-.13c6.1-.04,11.82-2.2,16.31-6.67"/>
                         <path d="M448.36,546.22h-45.98s-10.33,26.74-10.33,26.74l-10.77-.03,41.11-100.48,13.01-.18,41.46,100.61-17.45.24-11.05-26.89ZM445.23,538.09l-20.03-49.06-19.55,49.02,39.58.04Z"/>
@@ -91,5 +94,73 @@
         </footer>
     </main>
 
+    <script>
+        (function () {
+            const html = document.documentElement;
+            const body = document.body;
+            const logo = document.getElementById('portfolio-intro-logo');
+            if (!logo) return;
+
+            let unlockTimer = null;
+
+            function computeAndRunIntro() {
+                if (unlockTimer) {
+                    clearTimeout(unlockTimer);
+                    unlockTimer = null;
+                }
+
+                // 1. Lock scrolling during intro and reset classes to measure exact final layout coordinates
+                window.scrollTo(0, 0);
+                html.classList.add('intro-scroll-lock');
+                body.classList.add('intro-scroll-lock');
+                body.classList.remove('intro-play', 'intro-ready', 'intro-complete');
+                logo.style.removeProperty('--intro-tx');
+                logo.style.removeProperty('--intro-ty');
+                logo.style.removeProperty('--intro-scale');
+
+                const rect = logo.getBoundingClientRect();
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+
+                // 2. Starting scale & optical center calculation
+                const isMobile = vw < 768;
+                const maxTargetWidth = isMobile ? Math.min(vw * 0.56, 260) : Math.min(vw * 0.34, 420);
+                const startScale = Math.max(1.45, Math.min(maxTargetWidth / rect.width, isMobile ? 1.72 : 1.95));
+
+                const finalCenterX = rect.left + rect.width / 2;
+                const finalCenterY = rect.top + rect.height / 2;
+                const startCenterX = vw / 2;
+                const startCenterY = isMobile ? vh * 0.44 : vh * 0.46;
+
+                const tx = startCenterX - finalCenterX;
+                const ty = startCenterY - finalCenterY;
+
+                logo.style.setProperty('--intro-tx', tx.toFixed(1) + 'px');
+                logo.style.setProperty('--intro-ty', ty.toFixed(1) + 'px');
+                logo.style.setProperty('--intro-scale', startScale.toFixed(3));
+
+                // 3. Apply initial inverted state synchronously
+                body.classList.add('intro-ready');
+
+                // Force style calculation before starting transition
+                void logo.offsetWidth;
+
+                // 4. Trigger logo assembly -> travel -> post-landing blur dissolution
+                requestAnimationFrame(function () {
+                    body.classList.add('intro-play');
+                });
+
+                // 5. Unlock scrolling & mark complete once the blur veil finishes clearing (2.12s)
+                unlockTimer = setTimeout(function () {
+                    html.classList.remove('intro-scroll-lock');
+                    body.classList.remove('intro-scroll-lock');
+                    body.classList.add('intro-complete');
+                }, 2120);
+            }
+
+            // Run immediately on initial load / refresh
+            computeAndRunIntro();
+        })();
+    </script>
 </body>
 </html>
