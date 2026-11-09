@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="/portfolio-assets/arch/13.jpg" imagesrcset="/portfolio-assets/arch/13-sm.jpg 960w, /portfolio-assets/arch/13.jpg 1800w" imagesizes="(max-width: 900px) 100vw, 46vw">
     <link rel="preload" as="image" href="/portfolio-assets/int/17_1.jpg" imagesrcset="/portfolio-assets/int/17_1-sm.jpg 800w, /portfolio-assets/int/17_1.jpg 1440w" imagesizes="(max-width: 900px) 100vw, 46vw">
-  <link rel="stylesheet" crossorigin href="/assets/portfolio-C-1eSycP.css">
+  <link rel="stylesheet" crossorigin href="/assets/portfolio-BqaFWky7.css">
 </head>
 <body class="portfolio-intro-page intro-scroll-lock">
 
@@ -20,6 +20,11 @@
     <!-- Minimal Floating Topbar -->
     <header class="portfolio-topbar">
         <a href="/" class="topbar-brand" title="Back to Olivar Design">
+            <svg class="topbar-logo-svg" viewBox="0 175 595.28 265" xmlns="http://www.w3.org/2000/svg">
+                <path d="M290.69,326l-28.93,28.93c10.8.02,21.27.35,32.78,3.27-28.48,11.16-87.74,37.15-87.74,37.15l8.12,11.07c6.08-.93,89.32-43.82,155.81.66,0,0,22.34-27.88,22.68-28.86-15.94-8.4-69.26-35.71-102.72-52.21"/>
+                <path d="M289.79,307.32l-10.58-39.52c-5.41,9.35-10.94,18.24-19.22,26.76,4.58-30.24,11.7-94.56,11.7-94.56l-13.65,1.5c-2.23,5.73-6.71,99.26-78.47,134.6,0,0,12.97,33.29,13.65,34.08,15.25-9.61,65.56-42.12,96.58-62.85"/>
+                <path d="M306.42,315.89l39.52,10.59c-5.38-9.36-10.33-18.59-13.56-30.02,23.9,19.09,76.04,57.41,76.04,57.41l5.53-12.57c-3.85-4.8-82.6-55.44-77.33-135.26,0,0-35.31-5.41-36.34-5.22.7,18.01,3.7,77.84,6.15,115.06"/>
+            </svg>
             <span class="topbar-brand-text">← Olivar Design</span>
         </a>
         <div class="topbar-right">
@@ -150,12 +155,12 @@
                     body.classList.add('intro-play');
                 });
 
-                // 5. Unlock scrolling & mark complete once the blur veil finishes clearing (2.12s)
+                // 5. Unlock scrolling & mark complete once the blur veil finishes clearing (1.96s)
                 unlockTimer = setTimeout(function () {
                     html.classList.remove('intro-scroll-lock');
                     body.classList.remove('intro-scroll-lock');
                     body.classList.add('intro-complete');
-                }, 2120);
+                }, 1960);
             }
 
             // Run immediately on initial load / refresh

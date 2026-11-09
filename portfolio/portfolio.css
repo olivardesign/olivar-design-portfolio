@@ -1001,28 +1001,17 @@ body.intro-ready .selector-logo .wordmark {
     transform: translate3d(0, 26px, 0) scale(0.95);
 }
 
-/* Underlying Portfolio content — heavily blurred & non-readable until logo lands */
-body.portfolio-intro-page:not(.intro-complete) .selector-subtitle {
-    opacity: 0.14;
-    filter: blur(18px);
-    -webkit-filter: blur(18px);
-    transform: translate3d(0, 6px, 0);
-    will-change: opacity, filter, transform;
-}
-
-body.portfolio-intro-page:not(.intro-complete) .selector-card {
-    opacity: 0.22;
-    filter: blur(24px);
-    -webkit-filter: blur(24px);
-    transform: translate3d(0, 8px, 0);
-    will-change: opacity, filter, transform;
-}
-
+/* Underlying Portfolio content — heavily blurred & non-readable until logo lands
+   All elements share the exact same pre-reveal opacity (0.20) and blur (18px)
+   so they reveal simultaneously as a single unified composition */
+body.portfolio-intro-page:not(.intro-complete) .selector-subtitle,
+body.portfolio-intro-page:not(.intro-complete) .selector-card,
 body.portfolio-intro-page:not(.intro-complete) .portfolio-topbar,
 body.portfolio-intro-page:not(.intro-complete) .selector-footer {
-    opacity: 0.12;
-    filter: blur(16px);
-    -webkit-filter: blur(16px);
+    opacity: 0.20;
+    filter: blur(18px);
+    -webkit-filter: blur(18px);
+    transform: translate3d(0, 0, 0);
     will-change: opacity, filter;
 }
 
@@ -1064,69 +1053,47 @@ body.intro-play .selector-logo .wordmark {
         opacity 1.30s cubic-bezier(0.4, 0, 0.2, 1) 0.18s;
 }
 
-/* Frosted glass veil dissolves smoothly only after logo reaches final spot (1.42s) */
+/* Frosted glass veil dissolves smoothly as the logo reaches final spot (1.40s) */
 body.intro-play .intro-frost-veil {
     opacity: 0;
     backdrop-filter: blur(0px) saturate(1);
     -webkit-backdrop-filter: blur(0px) saturate(1);
     transition:
-        opacity 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.42s,
-        backdrop-filter 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.42s,
-        -webkit-backdrop-filter 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.42s;
+        opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1) 1.40s,
+        backdrop-filter 0.55s cubic-bezier(0.25, 1, 0.5, 1) 1.40s,
+        -webkit-backdrop-filter 0.55s cubic-bezier(0.25, 1, 0.5, 1) 1.40s;
 }
 
-/* Portfolio content clears from blur -> sharp as the veil lifts */
-body.intro-play .selector-subtitle {
-    opacity: 1;
-    filter: blur(0px);
-    -webkit-filter: blur(0px);
-    transform: translate3d(0, 0, 0);
-    transition:
-        opacity 0.58s cubic-bezier(0.25, 1, 0.5, 1) 1.42s,
-        filter 0.58s cubic-bezier(0.25, 1, 0.5, 1) 1.42s,
-        -webkit-filter 0.58s cubic-bezier(0.25, 1, 0.5, 1) 1.42s,
-        transform 0.58s cubic-bezier(0.25, 1, 0.5, 1) 1.42s;
-}
-
-body.intro-play .selector-card:nth-child(1) {
-    opacity: 1;
-    filter: blur(0px);
-    -webkit-filter: blur(0px);
-    transform: translate3d(0, 0, 0);
-    transition:
-        opacity 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.46s,
-        filter 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.46s,
-        -webkit-filter 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.46s,
-        transform 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.46s;
-}
-
-body.intro-play .selector-card:nth-child(2) {
-    opacity: 1;
-    filter: blur(0px);
-    -webkit-filter: blur(0px);
-    transform: translate3d(0, 0, 0);
-    transition:
-        opacity 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.50s,
-        filter 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.50s,
-        -webkit-filter 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.50s,
-        transform 0.62s cubic-bezier(0.25, 1, 0.5, 1) 1.50s;
-}
-
+/* ALL Portfolio landing-page elements (Topbar, Selected Works, Architecture & Interior cards, Footer)
+   clear simultaneously at the exact same 1.40s start time and 0.55s duration — zero staggered delays */
+body.intro-play .selector-subtitle,
+body.intro-play .selector-card,
 body.intro-play .portfolio-topbar,
 body.intro-play .selector-footer {
     opacity: 1;
     filter: blur(0px);
     -webkit-filter: blur(0px);
+    transform: translate3d(0, 0, 0);
     transition:
-        opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1) 1.50s,
-        filter 0.55s cubic-bezier(0.25, 1, 0.5, 1) 1.50s,
-        -webkit-filter 0.55s cubic-bezier(0.25, 1, 0.5, 1) 1.50s;
+        opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1) 1.40s,
+        filter 0.55s cubic-bezier(0.25, 1, 0.5, 1) 1.40s,
+        -webkit-filter 0.55s cubic-bezier(0.25, 1, 0.5, 1) 1.40s;
 }
 
 /* Clean final state once intro finishes */
 body.intro-complete .intro-frost-veil {
     opacity: 0;
     visibility: hidden;
+}
+
+body.intro-complete .selector-subtitle,
+body.intro-complete .selector-card,
+body.intro-complete .portfolio-topbar,
+body.intro-complete .selector-footer {
+    opacity: 1;
+    filter: none;
+    -webkit-filter: none;
+    transform: none;
 }
 
 /* Respect Reduced Motion accessibility preference */
