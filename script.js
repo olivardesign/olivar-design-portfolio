@@ -81,6 +81,53 @@ const projectsData = {
 };
 
 let currentLang = 'en';
+try {
+    const savedLang = localStorage.getItem('olivar_lang');
+    if (savedLang === 'ar' || savedLang === 'en') {
+        currentLang = savedLang;
+    }
+} catch (e) {}
+
+// Invisible Marketing Attribution Capture (First-Touch & Last-Touch)
+(function captureMarketingAttribution() {
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid', 'ttclid', 'twclid'];
+        const currentParams = {};
+        let hasNewParams = false;
+
+        utmKeys.forEach(key => {
+            const val = params.get(key);
+            if (val) {
+                currentParams[key] = val;
+                hasNewParams = true;
+            }
+        });
+
+        const nowIso = new Date().toISOString();
+        const existingFirst = localStorage.getItem('olivar_attribution_first');
+        if (!existingFirst) {
+            const firstTouch = {
+                ...currentParams,
+                initial_referrer: document.referrer || 'Direct',
+                landing_page: window.location.pathname + window.location.search,
+                captured_at: nowIso
+            };
+            localStorage.setItem('olivar_attribution_first', JSON.stringify(firstTouch));
+        }
+
+        if (hasNewParams || !sessionStorage.getItem('olivar_attribution_last')) {
+            const lastTouch = {
+                ...currentParams,
+                referrer: document.referrer || 'Direct',
+                landing_page: window.location.pathname + window.location.search,
+                captured_at: nowIso
+            };
+            sessionStorage.setItem('olivar_attribution_last', JSON.stringify(lastTouch));
+            localStorage.setItem('olivar_attribution_last', JSON.stringify(lastTouch));
+        }
+    } catch (e) {}
+})();
 
 function init() {
     const navbar = document.querySelector('.navbar');
@@ -100,15 +147,60 @@ function init() {
         document.body.classList.remove('loading');
     }, 3500);
 
+    function applyLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = currentLang;
+        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        const enSpan = document.querySelector('.en-active');
+        const arSpan = document.querySelector('.ar-active');
+        if (enSpan) enSpan.style.display = currentLang === 'en' ? 'inline' : 'none';
+        if (arSpan) arSpan.style.display = currentLang === 'ar' ? 'inline' : 'none';
+        try {
+            localStorage.setItem('olivar_lang', currentLang);
+        } catch (e) {}
+        updateContent();
+    }
+
     const langToggle = document.getElementById('lang-toggle');
     if (langToggle) {
         langToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'en' ? 'ar' : 'en';
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.querySelector('.en-active').style.display = currentLang === 'en' ? 'inline' : 'none';
-            document.querySelector('.ar-active').style.display = currentLang === 'ar' ? 'inline' : 'none';
-            updateContent();
+            applyLanguage(currentLang === 'en' ? 'ar' : 'en');
+        });
+    }
+
+    // Apply persisted language immediately on load
+    if (currentLang === 'ar') {
+        applyLanguage('ar');
+    }
+
+    // Full-screen Mobile Menu Drawer (Option A)
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+    if (mobileMenuToggle && mobileMenuDrawer) {
+        function closeMobileMenu() {
+            document.body.classList.remove('mobile-menu-open');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenuDrawer.setAttribute('aria-hidden', 'true');
+            const label = mobileMenuToggle.querySelector('.mobile-menu-label');
+            if (label) label.textContent = currentLang === 'ar' ? 'القائمة' : 'Menu';
+        }
+
+        mobileMenuToggle.addEventListener('click', () => {
+            const isOpen = document.body.classList.toggle('mobile-menu-open');
+            mobileMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            mobileMenuDrawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+            const label = mobileMenuToggle.querySelector('.mobile-menu-label');
+            if (label) {
+                label.textContent = isOpen
+                    ? (currentLang === 'ar' ? 'إغلاق' : 'Close')
+                    : (currentLang === 'ar' ? 'القائمة' : 'Menu');
+            }
+        });
+
+        mobileMenuDrawer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
         });
     }
 

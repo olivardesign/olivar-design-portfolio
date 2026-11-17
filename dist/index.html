@@ -10,8 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-  <script type="module" crossorigin src="/assets/main-CDIuOuUe.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-DKkVLgWD.css">
+  <script type="module" crossorigin src="/assets/main-BkUTOIw8.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-BT9wR203.css">
 </head>
 <body class="loading">
 
@@ -49,7 +50,7 @@
     <!-- Navigation -->
     <nav class="navbar reveal">
         <div class="logo">
-            <div class="logo-wrapper">
+            <a href="#home" class="logo-wrapper" aria-label="Olivar Design">
                 <svg class="logo-svg" viewBox="0 0 595.28 595" xmlns="http://www.w3.org/2000/svg">
                     <path d="M290.69,326l-28.93,28.93c10.8.02,21.27.35,32.78,3.27-28.48,11.16-87.74,37.15-87.74,37.15l8.12,11.07c6.08-.93,89.32-43.82,155.81.66,0,0,22.34-27.88,22.68-28.86-15.94-8.4-69.26-35.71-102.72-52.21"/>
                     <path d="M289.79,307.32l-10.58-39.52c-5.41,9.35-10.94,18.24-19.22,26.76,4.58-30.24,11.7-94.56,11.7-94.56l-13.65,1.5c-2.23,5.73-6.71,99.26-78.47,134.6,0,0,12.97,33.29,13.65,34.08,15.25-9.61,65.56-42.12,96.58-62.85"/>
@@ -65,20 +66,48 @@
                         </g>
                     </g>
                 </svg>
-            </div>
+            </a>
         </div>
-        <div class="nav-links">
+
+        <!-- Desktop Primary Navigation (Selected Works removed from nav only; Portfolio kept) -->
+        <div class="nav-links nav-links-desktop">
             <a href="#about" class="nav-link" data-en="About" data-ar="عن الشركة">About</a>
             <a href="#services" class="nav-link" data-en="Services" data-ar="خدماتنا">Services</a>
-            <a href="#projects" class="nav-link" data-en="Projects" data-ar="المشاريع">Projects</a>
+            <a href="#process" class="nav-link" data-en="Process" data-ar="آلية العمل">Process</a>
             <a href="/portfolio" class="nav-link" data-en="Portfolio" data-ar="ملف الأعمال">Portfolio</a>
             <a href="#contact" class="nav-link" data-en="Contact" data-ar="اتصل بنا">Contact</a>
-            <button id="lang-toggle" class="lang-toggle">
+        </div>
+
+        <!-- Far-Right Actions: Language Toggle + Isolated Primary Consultation CTA + Mobile Menu Trigger -->
+        <div class="nav-actions">
+            <button id="lang-toggle" class="lang-toggle" aria-label="Switch Language">
                 <span class="en-active">AR</span>
                 <span class="ar-active" style="display:none;">EN</span>
             </button>
+            <a href="/consultation" class="nav-consultation-cta" data-en="Book a Consultation" data-ar="احجز استشارة">Book a Consultation</a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu-drawer" aria-label="Menu">
+                <span class="mobile-menu-label" data-en="Menu" data-ar="القائمة">Menu</span>
+                <span class="mobile-menu-icon" aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Full-Screen Mobile Menu Drawer (Option A) -->
+    <div id="mobile-menu-drawer" class="mobile-menu-drawer" aria-hidden="true">
+        <div class="mobile-menu-inner">
+            <nav class="mobile-menu-links" aria-label="Mobile Navigation">
+                <a href="#about" class="mobile-nav-link" data-en="About" data-ar="عن الشركة">About</a>
+                <a href="#services" class="mobile-nav-link" data-en="Services" data-ar="خدماتنا">Services</a>
+                <a href="#process" class="mobile-nav-link" data-en="Process" data-ar="آلية العمل">Process</a>
+                <a href="/portfolio" class="mobile-nav-link" data-en="Portfolio" data-ar="ملف الأعمال">Portfolio</a>
+                <a href="#contact" class="mobile-nav-link" data-en="Contact" data-ar="اتصل بنا">Contact</a>
+            </nav>
+            <div class="mobile-menu-cta-area">
+                <a href="/consultation" class="mobile-menu-consultation-btn" data-en="Book a Consultation" data-ar="احجز استشارة">Book a Consultation</a>
+                <p class="mobile-menu-promise" data-en="Our team will contact you within the same day to coordinate your consultation." data-ar="سيتواصل معك فريقنا في نفس اليوم لتنسيق موعد الاستشارة.">Our team will contact you within the same day to coordinate your consultation.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -313,17 +342,20 @@
                     <p class="contact-lead-text" data-en="Send us a message and one of our team will get back to you" data-ar="أرسل لنا رسالة وسيعود إليك أحد أعضاء فريقنا">Send us a message and one of our team will get back to you</p>
                     
                     <div class="contact-methods-layout">
-                        <p class="contact-consultation-text" data-en="We provide free consultations. To book a meeting with our team, please contact us via WhatsApp or email." data-ar="نقدم استشارات مجانية. لحجز اجتماع مع فريقنا، يرجى التواصل معنا عبر الواتساب أو البريد الإلكتروني.">
-                            We provide free consultations. To book a meeting with our team, please contact us via WhatsApp or email.
+                        <p class="contact-consultation-text" data-en="We provide free consultations. Share a few details about your project and our team will contact you within the same day to coordinate your consultation." data-ar="نقدم استشارات مجانية. شاركنا بعض التفاصيل عن مشروعك وسيتواصل معك فريقنا في نفس اليوم لتنسيق موعد الاستشارة.">
+                            We provide free consultations. Share a few details about your project and our team will contact you within the same day to coordinate your consultation.
                         </p>
+                        <div class="contact-primary-cta-wrap">
+                            <a href="/consultation" class="contact-consultation-primary-btn" data-en="Book a Consultation →" data-ar="← احجز استشارة">Book a Consultation →</a>
+                        </div>
                         <div class="contact-group">
                             <a href="https://wa.me/966565047027" target="_blank" class="contact-btn-pill whatsapp-btn" title="WhatsApp">
                                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.038 3.284l-.569 2.103 2.141-.549c.945.512 2.012.897 3.158.897 3.182 0 5.768-2.586 5.768-5.766 0-3.181-2.586-5.735-5.768-5.735zm3.387 8.084c-.133.374-.66.69-.905.74-.242.049-.519.071-.88-.041-.24-.075-.529-.187-.852-.325-1.372-.589-2.261-1.979-2.331-2.072-.069-.092-.562-.751-.562-1.431 0-.68.351-1.013.477-1.145.125-.133.272-.166.363-.166.091 0 .181 0 .26.004.083.004.192-.031.301.233.111.272.381.93.413 1.001.033.069.055.149.011.239-.044.092-.067.149-.133.228-.066.079-.139.176-.199.239-.069.069-.141.145-.061.284.081.141.36.591.772.96.531.472.975.618 1.115.689.141.071.223.059.305-.035.081-.094.351-.413.445-.551.094-.141.192-.12.325-.071.133.051.848.399.994.472.145.071.242.111.276.176.035.069.035.405-.098.78z"/></svg>
-                                <span>WhatsApp</span>
+                                <span data-en="WhatsApp" data-ar="واتساب">WhatsApp</span>
                             </a>
-                            <a href="mailto:olivar.arch@gmail.com" class="contact-btn-pill email-btn" title="Email">
+                            <a href="mailto:design@olivardesign.com" class="contact-btn-pill email-btn" title="Email">
                                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l12-9.725v15.438h-24v-15.438l12 9.725z"/></svg>
-                                <span>Email</span>
+                                <span data-en="Email" data-ar="البريد الإلكتروني">Email</span>
                             </a>
                         </div>
                         <div class="contact-group social-group">
