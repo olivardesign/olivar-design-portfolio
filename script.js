@@ -150,22 +150,8 @@ function init() {
         const floatingCta = document.getElementById('olivar-floating-cta');
         if (floatingCta) {
             floatingCta.classList.add('is-visible');
-            // On mobile, briefly show "Book a Consultation" for 2.6s, then collapse into the compact icon
-            setTimeout(() => {
-                if (window.innerWidth <= 768) {
-                    floatingCta.classList.add('is-compact');
-                }
-            }, 2600);
         }
     }, 3500);
-
-    // Also collapse mobile floating CTA immediately once visitor scrolls past 140px
-    window.addEventListener('scroll', () => {
-        const floatingCta = document.getElementById('olivar-floating-cta');
-        if (floatingCta && window.innerWidth <= 768 && window.scrollY > 140) {
-            floatingCta.classList.add('is-compact');
-        }
-    }, { passive: true });
 
     function applyLanguage(lang) {
         currentLang = lang;

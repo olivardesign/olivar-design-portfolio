@@ -336,7 +336,7 @@ html[lang="ar"] .step-number-label {
 .choice-card.selected {
     background-color: var(--c-olive-dark);
     border-color: var(--c-olive-dark);
-    color: var(--c-sand);
+    color: var(--c-white);
 }
 
 .choice-card-body {
@@ -366,7 +366,7 @@ html[lang="ar"] .choice-card-title {
 }
 
 .choice-card.selected .choice-card-sub {
-    color: rgba(234, 224, 213, 0.74);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .choice-indicator {
@@ -383,8 +383,8 @@ html[lang="ar"] .choice-card-title {
 }
 
 .choice-card.selected .choice-indicator {
-    background-color: var(--c-sand);
-    border-color: var(--c-sand);
+    background-color: var(--c-white);
+    border-color: var(--c-white);
     color: var(--c-olive-dark);
 }
 
@@ -601,7 +601,7 @@ html[lang="ar"] .btn-step-back {
     min-height: 52px;
     padding: 0.95rem 2.25rem;
     background-color: var(--c-olive-dark);
-    color: var(--c-sand);
+    color: var(--c-white);
     border: 1px solid var(--c-olive-dark);
     border-radius: 40px;
     font-family: var(--f-primary);

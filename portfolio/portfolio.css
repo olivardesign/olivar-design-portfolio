@@ -610,14 +610,14 @@ img {
     margin-top: 4rem;
     padding: 5rem 1.5rem 4rem;
     background-color: var(--c-olive-dark);
-    color: var(--c-sand);
+    color: var(--c-white);
     text-align: center;
 }
 
 .closing-logo {
     width: 54px;
     height: auto;
-    fill: var(--c-sand);
+    fill: var(--c-white);
     margin: 0 auto 1.5rem;
 }
 
@@ -627,6 +627,7 @@ img {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 300;
+    color: var(--c-white);
     margin-bottom: 2rem;
 }
 
@@ -644,14 +645,15 @@ img {
     letter-spacing: 0.18em;
     text-transform: uppercase;
     padding: 0.85rem 1.75rem;
-    border: 1px solid rgba(234, 224, 213, 0.35);
-    color: var(--c-sand);
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    color: var(--c-white);
     text-decoration: none;
     transition: var(--t-smooth);
 }
 
 .closing-btn:hover {
-    background-color: var(--c-sand);
+    background-color: var(--c-white);
+    border-color: var(--c-white);
     color: var(--c-olive-dark);
 }
 
@@ -1127,47 +1129,42 @@ body.intro-complete .selector-footer {
 }
 
 /* ==========================================================================
-   Persistent Floating Consultation Action (Desktop Pill & Mobile Expand->Collapse)
+   Persistent Floating Consultation Action (Light Olivar Background + Olive Text, Text-Only)
    ========================================================================== */
 .olivar-floating-cta {
     position: fixed;
-    bottom: 1.75rem;
+    bottom: 1.65rem;
     right: 2rem;
     z-index: 120;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.55rem;
     height: 44px;
-    padding: 0 1.35rem;
-    background-color: rgba(44, 53, 41, 0.90);
-    color: var(--c-sand);
-    border: 1px solid rgba(234, 224, 213, 0.28);
-    border-radius: 44px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 28px rgba(24, 29, 23, 0.14);
+    padding: 0 1.45rem;
+    background-color: var(--c-neutral-light);
+    color: var(--c-olive-dark);
+    border: 1px solid rgba(44, 53, 41, 0.24);
+    border-radius: 40px;
+    box-shadow: 0 6px 24px rgba(44, 53, 41, 0.12);
     font-family: var(--f-primary);
     font-size: 0.72rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     text-decoration: none;
     white-space: nowrap;
-    overflow: hidden;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transform: translate3d(0, 10px, 0);
     transition:
-        opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-        visibility 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-        transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-        background-color 0.4s ease,
-        color 0.4s ease,
-        border-color 0.4s ease,
-        max-width 0.65s cubic-bezier(0.25, 1, 0.5, 1),
-        padding 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+        opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1),
+        visibility 0.55s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+        background-color 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
 html[lang="ar"] .olivar-floating-cta,
@@ -1176,7 +1173,7 @@ html[lang="ar"] .olivar-floating-cta,
     left: 2rem;
     letter-spacing: 0;
     font-family: var(--f-arabic);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
 }
 
 /* On /portfolio, keep hidden until intro-complete; on /architecture & /interiors, reveal when .is-visible */
@@ -1189,87 +1186,34 @@ body.portfolio-intro-page.intro-complete .olivar-floating-cta.is-visible {
 }
 
 .olivar-floating-cta:hover {
-    background-color: var(--c-olive-dark);
-    border-color: rgba(234, 224, 213, 0.55);
-    color: var(--c-white);
+    background-color: var(--c-white);
+    border-color: var(--c-olive-dark);
+    color: var(--c-olive-dark);
+    box-shadow: 0 8px 28px rgba(44, 53, 41, 0.18);
     transform: translate3d(0, -2px, 0) !important;
-}
-
-.floating-cta-icon {
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
-    stroke: currentColor;
-    fill: none;
 }
 
 .floating-cta-text {
     display: inline-block;
-    transition: opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1), max-width 0.65s cubic-bezier(0.25, 1, 0.5, 1);
-    max-width: 240px;
-}
-
-.floating-cta-arrow {
-    font-size: 0.78rem;
     line-height: 1;
-    opacity: 0.82;
-    transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
-html[lang="ar"] .floating-cta-arrow,
-.olivar-floating-cta.is-rtl .floating-cta-arrow {
-    display: inline-block;
-    transform: scaleX(-1);
-}
-
-.olivar-floating-cta:hover .floating-cta-arrow {
-    opacity: 1;
-    transform: translate(2px, -2px);
-}
-
-html[lang="ar"] .olivar-floating-cta:hover .floating-cta-arrow,
-.olivar-floating-cta.is-rtl:hover .floating-cta-arrow {
-    transform: scaleX(-1) translate(2px, -2px);
-}
-
+/* Mobile Persistent Text Pill (Refined & Compact, Never Collapses to Icon) */
 @media (max-width: 768px) {
     .olivar-floating-cta {
-        bottom: 1.25rem;
-        right: 1.25rem;
-        height: 46px;
-        max-width: 260px;
-        padding: 0 1.1rem;
-        font-size: 0.68rem;
-        letter-spacing: 0.13em;
+        bottom: calc(1.1rem + env(safe-area-inset-bottom, 0px));
+        right: 1.1rem;
+        height: 40px;
+        padding: 0 1.15rem;
+        font-size: 0.66rem;
+        letter-spacing: 0.14em;
+        box-shadow: 0 4px 18px rgba(44, 53, 41, 0.14);
     }
 
     html[lang="ar"] .olivar-floating-cta,
     .olivar-floating-cta.is-rtl {
         right: auto;
-        left: 1.25rem;
+        left: 1.1rem;
         font-size: 0.76rem;
-    }
-
-    .floating-cta-icon {
-        width: 17px;
-        height: 17px;
-    }
-
-    .floating-cta-arrow {
-        display: none;
-    }
-
-    .olivar-floating-cta.is-compact {
-        max-width: 46px;
-        width: 46px;
-        padding: 0;
-        gap: 0;
-        border-radius: 50%;
-    }
-
-    .olivar-floating-cta.is-compact .floating-cta-text {
-        opacity: 0;
-        max-width: 0;
-        pointer-events: none;
     }
 }
