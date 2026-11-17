@@ -145,7 +145,27 @@ function init() {
         const intro = document.getElementById('intro-screen');
         if (intro) { intro.classList.add('hide'); setTimeout(() => intro.remove(), 1500); }
         document.body.classList.remove('loading');
+
+        // Reveal persistent floating consultation CTA after intro finishes
+        const floatingCta = document.getElementById('olivar-floating-cta');
+        if (floatingCta) {
+            floatingCta.classList.add('is-visible');
+            // On mobile, briefly show "Book a Consultation" for 2.6s, then collapse into the compact icon
+            setTimeout(() => {
+                if (window.innerWidth <= 768) {
+                    floatingCta.classList.add('is-compact');
+                }
+            }, 2600);
+        }
     }, 3500);
+
+    // Also collapse mobile floating CTA immediately once visitor scrolls past 140px
+    window.addEventListener('scroll', () => {
+        const floatingCta = document.getElementById('olivar-floating-cta');
+        if (floatingCta && window.innerWidth <= 768 && window.scrollY > 140) {
+            floatingCta.classList.add('is-compact');
+        }
+    }, { passive: true });
 
     function applyLanguage(lang) {
         currentLang = lang;
@@ -249,6 +269,10 @@ function init() {
     function updateContent() {
         document.querySelectorAll('[data-en][data-ar]').forEach(el => el.innerHTML = el.getAttribute('data-' + currentLang));
         document.querySelectorAll('[data-placeholder-en]').forEach(el => el.setAttribute('placeholder', el.getAttribute('data-placeholder-' + currentLang)));
+        const floatingCta = document.getElementById('olivar-floating-cta');
+        if (floatingCta) {
+            floatingCta.setAttribute('aria-label', currentLang === 'ar' ? 'احجز استشارة' : 'Book a Consultation');
+        }
     }
 }
 

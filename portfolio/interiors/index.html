@@ -1160,5 +1160,82 @@
         <p class="closing-copy">© 2026 OLIVAR DESIGN</p>
     </footer>
 
+    <!-- Persistent Floating Consultation Action -->
+    <a href="/consultation" id="olivar-floating-cta" class="olivar-floating-cta" aria-label="Book a Consultation">
+        <svg class="floating-cta-icon" viewBox="0 0 24 24" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3.5" y="4.5" width="17" height="16" rx="2"/>
+            <line x1="8" y1="2.75" x2="8" y2="6.25"/>
+            <line x1="16" y1="2.75" x2="16" y2="6.25"/>
+            <line x1="3.5" y1="9.5" x2="20.5" y2="9.5"/>
+            <path d="M9.5 14.5l2 2 3.5-3.5"/>
+        </svg>
+        <span class="floating-cta-text" data-en="Book a Consultation" data-ar="احجز استشارة">Book a Consultation</span>
+        <span class="floating-cta-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <script>
+        (function () {
+            const floatingCta = document.getElementById('olivar-floating-cta');
+            if (!floatingCta) return;
+
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid', 'ttclid', 'twclid'];
+                const currentParams = {};
+                let hasNewParams = false;
+                utmKeys.forEach(k => {
+                    const v = params.get(k);
+                    if (v) { currentParams[k] = v; hasNewParams = true; }
+                });
+                const nowIso = new Date().toISOString();
+                if (!localStorage.getItem('olivar_attribution_first')) {
+                    localStorage.setItem('olivar_attribution_first', JSON.stringify({
+                        ...currentParams,
+                        initial_referrer: document.referrer || 'Direct',
+                        landing_page: window.location.pathname + window.location.search,
+                        captured_at: nowIso
+                    }));
+                }
+                if (hasNewParams || !sessionStorage.getItem('olivar_attribution_last')) {
+                    const last = JSON.stringify({
+                        ...currentParams,
+                        referrer: document.referrer || 'Direct',
+                        landing_page: window.location.pathname + window.location.search,
+                        captured_at: nowIso
+                    });
+                    sessionStorage.setItem('olivar_attribution_last', last);
+                    localStorage.setItem('olivar_attribution_last', last);
+                }
+
+                const urlLang = params.get('lang');
+                if (urlLang === 'ar' || urlLang === 'en') {
+                    localStorage.setItem('olivar_lang', urlLang);
+                }
+                const savedLang = localStorage.getItem('olivar_lang');
+                if (savedLang === 'ar') {
+                    floatingCta.classList.add('is-rtl');
+                    floatingCta.setAttribute('dir', 'rtl');
+                    floatingCta.setAttribute('aria-label', 'احجز استشارة');
+                    const txt = floatingCta.querySelector('.floating-cta-text');
+                    if (txt) txt.textContent = 'احجز استشارة';
+                }
+            } catch (e) {}
+
+            setTimeout(function () {
+                floatingCta.classList.add('is-visible');
+                setTimeout(function () {
+                    if (window.innerWidth <= 768) {
+                        floatingCta.classList.add('is-compact');
+                    }
+                }, 2600);
+            }, 600);
+
+            window.addEventListener('scroll', function () {
+                if (window.innerWidth <= 768 && window.scrollY > 140) {
+                    floatingCta.classList.add('is-compact');
+                }
+            }, { passive: true });
+        })();
+    </script>
 </body>
 </html>
