@@ -7,10 +7,22 @@ export default defineConfig(({ mode }) => {
   Object.assign(process.env, env);
 
   return {
+    appType: 'mpa',
     plugins: [
       {
         name: 'olivar-local-api-middleware',
         configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            if (req.url) {
+              const [pathname, search] = req.url.split('?');
+              const cleanRoutes = ['/portfolio', '/portfolio/architecture', '/portfolio/interiors', '/consultation'];
+              if (cleanRoutes.includes(pathname)) {
+                req.url = pathname + '/index.html' + (search ? '?' + search : '');
+              }
+            }
+            next();
+          });
+
           server.middlewares.use('/api/consultation', (req, res) => {
             // Reload .env.local dynamically on each request during development
             const freshEnv = loadEnv(mode, process.cwd(), '');
